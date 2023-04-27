@@ -14,6 +14,7 @@ def update_ips(urls, email, api_key, zone_id):
         r = session.get(
             f"https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records?type=A&name={url}"
         )
+        print(r.text)
         record_id = json.loads(r.text)['result'][0]['id']
         config = json.dumps({
             "type": "A",
